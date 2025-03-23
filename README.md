@@ -1,7 +1,6 @@
 <h1>Lecture_1</h1>
 1. Run CalculatorApi. If the server is properly running you should obtain the message:<br>
-   ![image](https://github.com/user-attachments/assets/aa119da0-1215-4b26-befd-1580467fa4a1)
-
+![image](https://github.com/user-attachments/assets/820a28e5-7877-4a63-9f4a-a93e881bdc0e)
 
 3. Run separate second instance of Visual Studio and run RestClient. There are eventually other 3 options to check the behaviour of server: a), b) or c)<br>
    a) Open web browser and type the request http://localhost:5129/api/calculator/add?a=5&b=10.
