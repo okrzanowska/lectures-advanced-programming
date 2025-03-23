@@ -1,5 +1,6 @@
 <h1>Lecture_1</h1>
-1. Run **CalculatorApi**. If the server is properly running you should obtain the message:<br>
+
+1. **Run CalculatorApi**. If the server is properly running you should obtain the message:<br>
 
 ![image](https://github.com/user-attachments/assets/480ddade-a4cf-43de-8ed1-c329b50a4f7e)
 
@@ -13,4 +14,4 @@
 
 3. You could choose any numbers you want to add in the URL.
 4. Try to add your own controller in the solution.
-5. You could modify 'Properties -> LaunchSettings.json' to use different ports on your local host machine.
+5. You could modify 'Properties -> LaunchSettings.json' to use different ports on your local host machine if you wish.
