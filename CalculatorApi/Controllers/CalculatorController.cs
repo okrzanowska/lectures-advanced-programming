@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-[Route("api/[controller]")]
-[ApiController]
-public class CalculatorController : ControllerBase
+namespace Calculator.RestApi.Controllers
 {
-    [HttpGet("add")]
-    public ActionResult<int> Add(int a, int b)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CalculatorController : ControllerBase
     {
-        return Ok(a + b);
+        [HttpGet("add")]
+        public IActionResult Add(int a, int b) => Ok(a + b);
+
+        [HttpGet("subtract")]
+        public IActionResult Subtract(int a, int b) => Ok(a - b);
     }
 }
