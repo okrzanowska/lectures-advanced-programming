@@ -25,7 +25,7 @@ Fig. 5 Blazor Web Page output console
 Additionally url for WSDL checking:
 http://localhost:5189/soap/calculator/wsdl
 
-Service desription:
+Service description:
 http://localhost:5189/soap/calculator/wsdl?singleWsdl
 
 
