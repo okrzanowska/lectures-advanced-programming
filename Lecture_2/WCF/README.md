@@ -22,7 +22,7 @@ Fig. 4 Blazor Web Page to present the results
 ![image](https://github.com/user-attachments/assets/f592a09b-b7e5-403f-b2fd-a14f949febdb)
 Fig. 5 Blazor Web Page output console
 
-Additionally url for WSDL checking:
+Additional url for WSDL checking:
 http://localhost:5189/soap/calculator/wsdl
 
 Service description:
