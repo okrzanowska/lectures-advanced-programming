@@ -14,6 +14,7 @@
 
 ![image](https://github.com/user-attachments/assets/006603c2-91c5-4234-8766-960b257103e4)
 
-2. Alternative for Postman usage. Run script included in the repo.
+2. Alternative for Postman usage. Run script PostRequest.ps1 included in the repo. https://github.com/ldsupervisor/Lectures/blob/master/Lecture_2/Calculator.SoapService/PostRequest.ps1
+   
 ![image](https://github.com/user-attachments/assets/ba9b9cbc-9cef-45d0-8e33-3ff0d3000723)
 
