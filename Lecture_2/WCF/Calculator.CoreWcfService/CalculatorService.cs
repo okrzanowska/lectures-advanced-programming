@@ -44,10 +44,12 @@ namespace Calculator.CoreWcfService
 
                 return a / b;
             }
+
             catch (FaultException<ServiceFault>)
             {
                 throw;
             }
+
             catch (Exception ex)
             {
                 throw new FaultException<ServiceFault>(
