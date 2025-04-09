@@ -8,15 +8,16 @@ namespace Calculator.SoapService.Controllers
     public class SoapController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Invoke([FromBody] XmlElement soapEnvelope)
+        [Consumes("text/xml")]
+        public async Task<IActionResult> Invoke()
         {
             try
             {
-                Console.WriteLine("SOAP envelope received:");
-                Console.WriteLine(soapEnvelope.OuterXml);
+                using var reader = new StreamReader(Request.Body);
+                var rawXml = await reader.ReadToEndAsync();
 
                 var doc = new XmlDocument();
-                doc.LoadXml(soapEnvelope.OuterXml);
+                doc.LoadXml(rawXml);
 
                 var method = doc.GetElementsByTagName("Add")?.Item(0);
                 if (method == null)
@@ -27,26 +28,19 @@ namespace Calculator.SoapService.Controllers
 
                 int result = a + b;
 
-                var responseXml = $@"
-                <soap:Envelope xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
-                 <soap:Body>
-                        <AddResponse>
-                            <Result>{result}</Result>
-                        </AddResponse>
-                 </soap:Body>
-                </soap:Envelope>";
+                var responseXml = $@"<soap:Envelope xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+  <soap:Body>
+    <AddResponse>
+      <Result>{result}</Result>
+    </AddResponse>
+  </soap:Body>
+</soap:Envelope>";
 
                 return Content(responseXml, "text/xml");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SOAP ERROR: " + ex.Message);
-                return new ContentResult
-                {
-                    StatusCode = 500,
-                    ContentType = "text/plain",
-                    Content = $"SOAP error: {ex.Message}"
-                };
+                return StatusCode(500, $"SOAP error: {ex.Message}");
             }
         }
     }

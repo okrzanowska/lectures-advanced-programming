@@ -1,0 +1,15 @@
+﻿@Calculator.SoapService_HostAddress = http://localhost:5255
+POST http://localhost:5255/soap
+Content-Type: text/xml
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Body>
+		<Add>
+			<a>87</a>
+			<b>9</b>
+		</Add>
+	</soap:Body>
+</soap:Envelope>
+
+
+###
