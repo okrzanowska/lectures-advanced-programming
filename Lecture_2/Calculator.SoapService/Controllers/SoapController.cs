@@ -28,13 +28,13 @@ namespace Calculator.SoapService.Controllers
                 int result = a + b;
 
                 var responseXml = $@"
-<soap:Envelope xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
-    <soap:Body>
-        <AddResponse>
-            <Result>{result}</Result>
-        </AddResponse>
-    </soap:Body>
-</soap:Envelope>";
+                <soap:Envelope xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+                 <soap:Body>
+                        <AddResponse>
+                            <Result>{result}</Result>
+                        </AddResponse>
+                 </soap:Body>
+                </soap:Envelope>";
 
                 return Content(responseXml, "text/xml");
             }
