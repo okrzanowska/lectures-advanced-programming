@@ -1,0 +1,93 @@
+﻿@page "/calculator"
+@rendermode InteractiveServer
+@using CalculatorService
+@using System.ServiceModel
+
+<PageTitle>SOAP integer number calculator</PageTitle>
+
+<h3 class="mb-4 text-center w-auto mx-auto">SOAP Integer Calculator</h3>
+
+<table class="table table-bordered w-auto mx-auto">
+    <thead>
+        <tr>
+            <th>
+                <label class="form-label">Number A:</label>
+                <input type="number" class="form-control" @bind="A" placeholder="Give A" />
+            </th>
+            <th>
+                <label class="form-label">Operation:</label>
+                <select class="form-select" @bind="Operation">
+                    <option value="Add">+</option>
+                    <option value="Subtract">-</option>
+                    <option value="Multiply">*</option>
+                    <option value="Divide">/</option>
+                </select>
+            </th>
+            <th>
+                <label class="form-label">Number B:</label>
+                <input type="number" class="form-control" @bind="B" placeholder="Give B" />
+            </th>
+        </tr>
+    </thead>
+</table>
+
+<div class="text-center mt-3">
+    <button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+</div>
+
+@if (Result.HasValue)
+{
+    <div class="alert alert-success text-center mt-4 w-50 mx-auto">
+        <strong>Result:</strong> @Result
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Error))
+{
+    <div class="alert alert-danger text-center mt-3 w-50 mx-auto">
+        <strong>Error:</strong> @Error
+    </div>
+}
+
+@code {
+    int A { get; set; }
+    int B { get; set; }
+    string Operation { get; set; } = "Add";
+    int? Result;
+    string Error = null;
+
+    async Task Calculate()
+    {
+        Error = null;
+
+        try
+        {
+            var client = new CalculatorServiceClient();
+
+            Result = Operation switch
+            {
+                "Add" => await client.AddAsync(A, B),
+                "Subtract" => await client.SubtractAsync(A, B),
+                "Multiply" => await client.MultiplyAsync(A, B),
+                "Divide" => await client.DivideAsync(A, B),
+                _ => 0
+            };
+
+            await client.CloseAsync();
+        }
+
+        catch (FaultException fault) when (fault.Message.Contains("divide by zero", StringComparison.OrdinalIgnoreCase))
+        {
+            Error = fault.Message;
+            Result = null;
+        }
+        catch (Exception ex)
+        {
+            Error = "Problem with the SOAP service." + ex;
+            Result = null;
+        }
+
+
+
+    }
+}
