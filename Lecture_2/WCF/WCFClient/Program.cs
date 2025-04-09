@@ -21,6 +21,10 @@ class Program
 
             int division = await client.DivideAsync(a, b);
             Console.WriteLine($"{a} / {b} = {division}");
+
+            Console.WriteLine("Press any key to close the client...");
+            Console.ReadLine();
+
         }
         catch (Exception ex)
         {
